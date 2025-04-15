@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { userAuth } from "../Context/ContextAuth";
+
 function Signup() {
-  const [loading, setLoading] = UseState("");
-  const [error, setError] = UseState("");
-  const [email, setEmail] = UseState("");
-  const [password, setPassword] = UseState("");
+  const [loading, setLoading] = useState("");
+  const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { session, signUpNewUser } = userAuth();
+  console.log(session);
   return (
     <div>
       <form action="">
