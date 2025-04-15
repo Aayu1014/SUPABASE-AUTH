@@ -7,7 +7,7 @@ function Signup() {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { session } = userAuth();
+  const { session, signUpNewUser } = userAuth();
   console.log(session);
   return (
     <div>
