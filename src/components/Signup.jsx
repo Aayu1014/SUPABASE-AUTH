@@ -1,17 +1,34 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { userAuth } from "../Context/ContextAuth";
-
+import { useNavigate } from "react-router-dom";
 function Signup() {
   const [loading, setLoading] = useState("");
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { session, signUpNewUser } = userAuth();
+  const navigate = useNavigate();
+
   console.log(session);
+
+  const hndlesignup = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const result = await signUpNewUser(email, password);
+      if (result.success) {
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      setError("Error signing up. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div>
-      <form action="">
+      <form onSubmit={handleSignup} action="">
         <h2>Sign Up Today</h2>
         <p>
           Already have an account? <Link to="/signin"> Sign in!</Link>
